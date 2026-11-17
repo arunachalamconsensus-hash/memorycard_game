@@ -15,7 +15,7 @@ const emojis = [
   "🍒"
 ];
 
-const GAME_TIME = 90;
+const GAME_TIME = 120;
 
 // Create and shuffle cards
 function createCards() {
