@@ -1,0 +1,90 @@
+
+.memory-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+/* Both card faces */
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 14px;
+  font-size: clamp(28px, 5vw, 45px);
+  font-weight: bold;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hidden card */
+.card-front {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: 2px solid #a5b4fc;
+
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+/* Revealed card */
+.card-back {
+  background: #eff6ff;
+  color: #1e293b;
+  border: 2px solid #93c5fd;
+
+  opacity: 0;
+  transform: rotateY(-180deg);
+}
+
+/* Flip animation */
+.memory-card.flipped .card-front {
+  opacity: 0;
+  transform: rotateY(180deg);
+}
+
+.memory-card.flipped .card-back {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+/* Matched card */
+.memory-card.matched .card-back {
+  background: #dcfce7;
+  border-color: #4ade80;
+}
+
+/* Hover effect */
+.memory-card:not(:disabled):hover .card-front {
+  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.3);
+}
+
+.memory-card:disabled {
+  cursor: default;
+}
